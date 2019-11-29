@@ -1,33 +1,37 @@
 package com.nordstrom.tools;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadFactory;
-import java.util.concurrent.atomic.AtomicInteger;
+import static org.junit.Assert.assertTrue;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.TimeUnit;
 import org.junit.Test;
 
 public class GuavaAgentTest {
 
-	private static final AtomicInteger THREAD_COUNTER = new AtomicInteger(1);
-	private static final ExecutorService THREAD_POOL = Executors.newCachedThreadPool(new ThreadFactory() {
-		public Thread newThread(Runnable r) {
-			Thread t = new Thread(r, "UrlChecker-" + THREAD_COUNTER.incrementAndGet()); // Thread safety reviewed
-			t.setDaemon(true);
-			return t;
-		}
-	});
-
 	@Test
 	@SuppressWarnings("unused")
-	public void testSimpleTimeLimiter() throws ClassNotFoundException, NoSuchMethodException, SecurityException,
-			InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		
+	public void testTimeLimiterMethod() throws ClassNotFoundException, NoSuchMethodException, SecurityException {
+		Class<?> iface = Class.forName("com.google.common.util.concurrent.TimeLimiter");
+		Method method = iface.getDeclaredMethod("callWithTimeout", Callable.class, long.class, TimeUnit.class, boolean.class);
+		assertTrue(Modifier.isPublic(method.getModifiers()));
+	}
+
+	@Test
+	public void testSimpleTimeLimiterCtor() throws ClassNotFoundException, NoSuchMethodException, SecurityException {
 		Class<?> clazz = Class.forName("com.google.common.util.concurrent.SimpleTimeLimiter");
-		Constructor<?> ctor = clazz.getConstructor(new Class[] { ExecutorService.class });
-		Object limiter = ctor.newInstance(THREAD_POOL);
+		Constructor<?> ctor = clazz.getDeclaredConstructor(new Class[] { ExecutorService.class });
+		assertTrue(Modifier.isPublic(ctor.getModifiers()));
+	}
+	
+	@Test
+	public void testSimpleTimeLimiterMethod() throws ClassNotFoundException, NoSuchMethodException, SecurityException {
+		Class<?> clazz = Class.forName("com.google.common.util.concurrent.SimpleTimeLimiter");
+		Method method = clazz.getDeclaredMethod("callWithTimeout", Callable.class, long.class, TimeUnit.class, boolean.class);
+		assertTrue(Modifier.isPublic(method.getModifiers()));
 	}
 
 }

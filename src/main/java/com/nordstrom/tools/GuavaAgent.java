@@ -48,7 +48,7 @@ public class GuavaAgent {
               @Override
               public Builder<?> transform(Builder<?> builder, TypeDescription type,
                               ClassLoader classloader, JavaModule module) {
-                  return builder.defineMethod("callWithTimeout", Object.class, Visibility.PUBLIC).withParameters(Callable.class, TimeUnit.class).withoutCode();
+                  return builder.defineMethod("callWithTimeout", Object.class, Visibility.PUBLIC).withParameters(Callable.class, long.class, TimeUnit.class, boolean.class).withoutCode();
               }
           })
     	  .type(named("com.google.common.util.concurrent.SimpleTimeLimiter"))
