@@ -1,9 +1,10 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.nordstrom.tools</groupId>
   <artifactId>guava-agent</artifactId>
   <packaging>jar</packaging>
-  <version>28.1.1-SNAPSHOT</version>
+  <version>28.1-SNAPSHOT</version>
   <name>guava-agent</name>
   <url>https://github.com/Nordstrom/guava-agent</url>
   
@@ -40,8 +41,6 @@
     <bytebuddy.version>1.10.3</bytebuddy.version>
     <toolchains-plugin.version>1.1</toolchains-plugin.version>
     <surefire-plugin.version>2.22.0</surefire-plugin.version>
-    <source-plugin.version>3.2.0</source-plugin.version>
-    <javadoc-plugin.version>3.1.1</javadoc-plugin.version>
     <gpg-plugin.version>1.6</gpg-plugin.version>
     <staging-plugin.version>1.6.8</staging-plugin.version>
     <release-plugin.version>2.5.3</release-plugin.version>
@@ -127,16 +126,6 @@
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-source-plugin</artifactId>
-          <version>${source-plugin.version}</version>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-javadoc-plugin</artifactId>
-          <version>${javadoc-plugin.version}</version>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-gpg-plugin</artifactId>
           <version>${gpg-plugin.version}</version>
         </plugin>
@@ -207,30 +196,6 @@
         <configuration>
           <argLine>-javaagent:src/test/resources/test-agent.jar</argLine>
         </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-source-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>attach-sources</id>
-            <goals>
-              <goal>jar-no-fork</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-javadoc-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>attach-javadocs</id>
-            <goals>
-              <goal>jar</goal>
-            </goals>
-          </execution>
-        </executions>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
