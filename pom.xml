@@ -4,7 +4,12 @@
   <artifactId>guava-agent</artifactId>
   <packaging>jar</packaging>
   <version>28.1.1-SNAPSHOT</version>
+  
   <name>guava-agent</name>
+  <description>Nordstrom guava-agent applies runtime transformations to the Guava library that resurrect a beta version
+  of the TimeLimiter interface and the SimpleTimeLimiter class that implements it. These changes enable clients of the
+  UrlChecker class of the Selenium 2 API to utilize updated releases of Guava that resolve a security defect related to
+  unbounded allocation of memory.</description>
   <url>https://github.com/Nordstrom/guava-agent</url>
   
   <licenses>
