@@ -10,7 +10,7 @@
   of the TimeLimiter interface and the SimpleTimeLimiter class that implements it. These changes enable clients of the
   UrlChecker class of the Selenium 2 API to utilize updated releases of Guava that resolve a security defect related to
   unbounded allocation of memory.</description>
-  <url>https://github.com/Nordstrom/guava-agent</url>
+  <url>https://github.com/sbabcoc/guava-agent</url>
   
   <licenses>
     <license>
@@ -55,9 +55,9 @@
   </properties>
   
   <scm>
-    <connection>scm:git:https://github.com/Nordstrom/guava-agent.git</connection>
-    <developerConnection>scm:git:https://github.com/Nordstrom/guava-agent.git</developerConnection>
-    <url>https://github.com/Nordstrom/guava-agent/tree/master</url>
+    <connection>scm:git:https://github.com/sbabcoc/guava-agent.git</connection>
+    <developerConnection>scm:git:https://github.com/sbabcoc/guava-agent.git</developerConnection>
+    <url>https://github.com/sbabcoc/guava-agent/tree/master</url>
     <tag>HEAD</tag>
   </scm>
 
