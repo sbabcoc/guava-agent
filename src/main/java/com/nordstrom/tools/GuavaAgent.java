@@ -16,7 +16,7 @@ import net.bytebuddy.dynamic.DynamicType.Builder;
 import net.bytebuddy.utility.JavaModule;
 
 /**
- * This class implements the hooks and utility methods that activate the core functionality of <b>JUnit Foundation</b>.
+ * This class implements the transformations that allow use of newer <b>Guava</b> releases with Selenium 2.
  */
 public class GuavaAgent {
 
@@ -25,20 +25,20 @@ public class GuavaAgent {
     }
     
     /**
-     * This is the main entry point for the Java agent used to transform {@code ParentRunner} and
-     * {@code BlockJUnit4ClassRunner}.
+     * This is the main entry point for the Java agent used to expose the constructor of {@code SimpleTimeLimiter} and
+     * the {@code callWithTimeout} method of {@code TimeLimiter}.
      *  
      * @param agentArgs agent options
-     * @param instrumentation {@link Instrumentation} object used to transform JUnit core classes
+     * @param instrumentation {@link Instrumentation} object used to transform Guava core classes
      */
     public static void premain(String agentArgs, Instrumentation instrumentation) {
         installTransformer(instrumentation);
     }
     
     /**
-     * Install the {@code Byte Buddy} byte code transformations that provide test fine-grained test lifecycle hooks.
+     * Install the {@code Byte Buddy} byte code transformations to {@code TimeLimiter} and {@code SimpleTimeLimiter}.
      * 
-     * @param instrumentation {@link Instrumentation} object used to transform JUnit core classes
+     * @param instrumentation {@link Instrumentation} object used to transform Guava core classes
      * @return The installed class file transformer
      */
     public static ClassFileTransformer installTransformer(Instrumentation instrumentation) {
