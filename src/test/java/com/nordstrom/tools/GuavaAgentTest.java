@@ -13,7 +13,6 @@ import org.junit.Test;
 public class GuavaAgentTest {
 
 	@Test
-	@SuppressWarnings("unused")
 	public void testTimeLimiterMethod() throws ClassNotFoundException, NoSuchMethodException, SecurityException {
 		Class<?> iface = Class.forName("com.google.common.util.concurrent.TimeLimiter");
 		Method method = iface.getDeclaredMethod("callWithTimeout", Callable.class, long.class, TimeUnit.class, boolean.class);
